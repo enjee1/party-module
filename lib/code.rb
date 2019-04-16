@@ -1,14 +1,20 @@
 module PartyGoer
-  def drink
 
+  def initialize
+    @drinks = 0
+  end
+
+  def drink
+    @drinks += 1
+    @drinks < 4 ? true : false
   end
 
   def sing
-    system("say", "Party party party")
+     "Party, party, party!"
   end
 
   def cause_havoc
-    PersonalizedHavocError.new.raise
+    raise PersonalizedHavocError, "You've partied too hearty!"
   end
 
   def invited?
@@ -17,7 +23,5 @@ module PartyGoer
 end
 
 class PersonalizedHavocError < StandardError
-  def raise
-     super "You've partied too hearty!"
-  end
+
 end
